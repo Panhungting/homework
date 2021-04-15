@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html>
+<div  backgroundcolor="red"><img src="mainImg.jpg" alt="Main"></div>
+<head>
+  <meta charset="utf-8">
+  <title>Html/CSS/jQurey</title>
+  <link href="html5_try.css " rel="stylesheet">
+  <script>
+    
+    // TODO 1.当月を取得（年	月	日	曜日）
+
+    // 更新表示
+    function toUpdata(thisId){
+
+      var checkboxs = document.getElementsByName('checkboxs');
+      for(var i = 0 ; i < checkboxs.length ; i++){
+      // チェック判断
+        if(checkboxs[i].checked) {
+
+          // 参考-交換
+          // document.getElementsByName('bikou')[i].toggleAttribute('readOnly');
+          // 書ける
+          document.getElementsByName('bikous')[i].readOnly = "";
+          document.getElementsByName('bikous')[i].disabled = "";
+          document.getElementsByName('rowChange')[i].classList.remove("tr-readyOney");
+          document.getElementsByName('rowChange')[i].classList.add("tr-write");
+          document.getElementsByName('bikous')[i].classList.add("tr-write");
+        } else {
+
+          // 金色の書け
+          if (document.getElementsByName('rowChange')[i].classList.value === "tr-write") {
+
+            // 書かない
+            document.getElementsByName('bikous')[i].disabled = "disabled";
+            document.getElementsByName('rowChange')[i].classList.remove("tr-write");
+            document.getElementsByName('bikous')[i].classList.remove("tr-write");
+          }
+        }
+      }
+    }
+
+    // 非活性
+    function toDisable(thisId){
+      
+      alert(thisId);
+      var id = thisId.split("-")
+      var checkboxs = document.getElementById(thisId);
+
+      if(checkboxs.checked) {
+
+        // alert('checkedbikou-6-'+id[2]);
+        // 書かない
+        // document.getElementById('bikou-6-'+id[2]).readOnly = "readOnly";
+        // document.getElementById('bikou-6-'+id[2]).disabled = "disabled";
+        document.getElementById('tr-0').disabled = "disabled";
+      } else {
+
+        // alert('Notikou-6-'+id[1]);
+        // 書ける
+        // document.getElementById('bikou-6-'+id[2]).readOnly = "";
+        // document.getElementById('bikou-6-'+id[2]).disabled = "";
+        document.getElementById('tr-0').disabled = "";
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+  <table>
+    <caption ><span>Honest-info</span></caption>
+    <col width="5%">
+    <col width="5%">
+    <col width="8%">
+    <col width="6%">
+    <col width="6%">
+    <col width="6%">
+    <col width="11%">
+    <col width="11%">
+    <col width="32%" text-align="left" valign="middle">
+    
+    <!-- table head -->
+    <thead>
+      <!-- table row -->
+      <tr>
+        <th colspan="9">勤務表</th>
+      </tr>
+    </thead>
+    <!-- table body -->
+    <tbody>
+      <!-- table row -->
+      <tr>
+        <!-- table head -->
+        <th>確認</th>
+        <th>番号</th>
+        <th> 年 </th>
+        <th> 月 </th>
+        <th> 日 </th>
+        <th>曜日</th>
+        <th>出勤</th>
+        <th>退勤</th>
+        <th>備考</th>
+      </tr>
+      <tr id="tr-1" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-1" name="checkboxs" type="checkbox" 
+            onclick="toUpdata(this.id)">
+        </td>
+        <td>1</td>
+        <td></td>
+        <td>04</td>
+        <td>01</td>
+        <td>木</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-1" name="bikous" type="text" 
+            class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-2" name="rowChange" class="tr-write">
+        <td>
+          <input id="checkboxs-2" name="checkboxs" type="checkbox" 
+            onclick="toUpdata(this.id)" checked>
+        </td>
+        <td>2</td>
+        <td></td>
+        <td>04</td>
+        <td>02</td>
+        <td>金</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-2" name="bikous" type="text" 
+            class="read-only tr-write" value="入力できる、チェックしないと更新しない">
+        </td>
+      </tr>
+      <tr id="tr-3" name="rowChange" class="tr-write">
+        <!-- table data -->
+        <td>
+          <input id="checkboxs-3" type="checkbox" name="checkboxs" 
+          onclick="toUpdata(this.id)" checked>
+        </td>
+        <td>3</td>
+        <td></td>
+        <td>04</td>
+        <td>03</td>
+        <td>土</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-3" name="bikous" type="text" 
+            class="read-only tr-write" value="更新しておく、チェックしないと更新しない">
+        </td>
+      </tr>
+      <tr id="tr-4" name="rowChange" class="">
+        <!-- table data -->
+        <td>
+          <input id="checkboxs-4" type="checkbox" name="checkboxs" 
+          onclick="toUpdata(this.id)">
+        </td>
+        <td>4</td>
+        <td></td>
+        <td>04</td>
+        <td>04</td>
+        <td>日</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td id="td-4" class="">
+          <input id="bikou-4" name="bikous" type="text"
+           class="read-only" value="Defult 何も入力してない状態" disabled>
+        </td>
+      </tr>
+      <tr id="tr-5" name="rowChange" class="">
+        <!-- table data -->
+        <td>
+          <input id="checkboxs-5" type="checkbox" name="checkboxs" 
+            onclick="toUpdata(this.id)">
+        </td>
+        <td>5</td>
+        <td></td>
+        <td>04</td>
+        <td>05</td>
+        <td>月</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td id="td-5"  class="">
+          <input id="bikou-5" type="text" name="bikous" 
+            class="read-only" value="試し" disabled>
+        </td>
+      </tr>
+      <tr id="tr-6" name="rowChange" class="">
+        <!-- table data -->
+        <td>
+          <input id="checkboxs-6" type="checkbox" name="checkboxs" 
+            onclick="toUpdata(this.id)">
+        </td>
+        <td>6</td>
+        <td></td>
+        <td>04</td>
+        <td>06</td>
+        <td>火</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td id="td-6"  class="">
+          <input id="bikou-6" type="text" name="bikous" 
+            class="read-only" value="試し" disabled>
+        </td>
+      </tr>
+      <tr id="tr-7" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-7" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>7</td>
+        <td></td>
+        <td>04</td>
+        <td>07</td>
+        <td>水</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-7" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-8" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-8" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>8</td>
+        <td></td>
+        <td>04</td>
+        <td>08</td>
+        <td>木</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-8" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-9" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-9" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>9</td>
+        <td></td>
+        <td>04</td>
+        <td>09</td>
+        <td>金</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-9" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-10" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-10" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>10</td>
+        <td></td>
+        <td>04</td>
+        <td>10</td>
+        <td>土</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-10" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-11" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-11" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>11</td>
+        <td></td>
+        <td>04</td>
+        <td>11</td>
+        <td>日</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-11" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-12" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-12" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>12</td>
+        <td></td>
+        <td>04</td>
+        <td>12</td>
+        <td>月</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-12" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-13" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-13" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>13</td>
+        <td></td>
+        <td>04</td>
+        <td>13</td>
+        <td>火</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-13" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-14" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-14" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>14</td>
+        <td></td>
+        <td>04</td>
+        <td>14</td>
+        <td>水</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-14" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-15" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-15" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>15</td>
+        <td></td>
+        <td>04</td>
+        <td>15</td>
+        <td>木</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-15" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-16" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-16" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>16</td>
+        <td></td>
+        <td>04</td>
+        <td>16</td>
+        <td>金</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-16" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-17" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-17" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>17</td>
+        <td></td>
+        <td>04</td>
+        <td>17</td>
+        <td>土</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-17" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-18" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-18" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>18</td>
+        <td></td>
+        <td>04</td>
+        <td>18</td>
+        <td>日</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-18" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-19" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-19" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>19</td>
+        <td></td>
+        <td>04</td>
+        <td>19</td>
+        <td>月</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-19" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-20" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-20" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>20</td>
+        <td></td>
+        <td>04</td>
+        <td>20</td>
+        <td>火</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-20" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-21" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-21" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>21</td>
+        <td></td>
+        <td>04</td>
+        <td>21</td>
+        <td>水</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-21" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-22" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-22" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>22</td>
+        <td></td>
+        <td>04</td>
+        <td>22</td>
+        <td>木</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-22" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-23" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-23" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>23</td>
+        <td></td>
+        <td>04</td>
+        <td>23</td>
+        <td>金</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-23" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-24" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-24" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>24</td>
+        <td></td>
+        <td>04</td>
+        <td>24</td>
+        <td>土</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-24" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-25" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-25" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>25</td>
+        <td></td>
+        <td>04</td>
+        <td>25</td>
+        <td>日</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-25" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-26" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-26" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>26</td>
+        <td></td>
+        <td>04</td>
+        <td>26</td>
+        <td>月</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-26" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-27" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-27" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>27</td>
+        <td></td>
+        <td>04</td>
+        <td>27</td>
+        <td>火</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-27" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-28" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-28" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>28</td>
+        <td></td>
+        <td>04</td>
+        <td>28</td>
+        <td>水</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-28" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+      <tr id="tr-29" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-29" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>29</td>
+        <td></td>
+        <td>04</td>
+        <td>29</td>
+        <td>木</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-29" name="bikous" type="text"
+                 class="read-only" value="昭和の日" readonly>
+        </td>
+      </tr>
+      <tr id="tr-30" name="rowChange" class="tr-readyOney">
+        <td>
+          <input id="checkboxs-30" name="checkboxs" type="checkbox"
+                 onclick="toUpdata(this.id)">
+        </td>
+        <td>30</td>
+        <td></td>
+        <td>04</td>
+        <td>30</td>
+        <td>金</td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td><select>
+          <option value="0">0:00</option>
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="3">3:00</option>
+          <option value="4">4:00</option>
+          <option value="5">5:00</option>
+          <option value="6">6:00</option>
+          <option value="7">7:00</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+          <option value="19">19:00</option>
+          <option value="20">20:00</option>
+          <option value="21">21:00</option>
+          <option value="22">22:00</option>
+          <option value="23">23:00</option>
+          <option value="24">24:00</option>
+        </select></td>
+        <td class="">
+          <input id="bikou-30" name="bikous" type="text"
+                 class="read-only" value="前保存したデータ" readonly>
+        </td>
+      </tr>
+
+
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="9">
+          <button name="buttonUpdata" onclick="">確認-更新</button>
+        </td>
+      </tr>
+      <tr >
+        <td rowspan="2" colspan="9">
+          <div>
+            説明
+            <ol>
+              <li>灰色は前保存したデータ。</li>
+              <li>チェックしたのは、金色になった、更新をできる。</li>
+              <li>まだ入力しないのは、白色を表示している。</li>
+            </ol>
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+
+</html>
