@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<div backgroundcolor="red"><img src="mainImg.jpg" alt="Main"></div>
+
+<head>
+  <meta charset="utf-8">
+  <title>Html/CSS/jQurey</title>
+  <link href="html5_try.css " rel="stylesheet">
+  <script>
+    // TODO 1.当月を取得（年	月	日	曜日）
+    // 更新表示
+    function toUpdata(thisId) {
+      var checkboxs = document.getElementsByName('checkboxs');
+      for (var i = 0; i < checkboxs.length; i++) {
+        // チェック判断
+        if (checkboxs[i].checked) {
+
+          // 参考-交換
+          // document.getElementsByName('bikou')[i].toggleAttribute('readOnly');
+          // 書ける
+          document.getElementsByName('bikous')[i].readOnly = "";
+          document.getElementsByName('bikous')[i].disabled = "";
+          document.getElementsByName('rowChange')[i].classList.remove("tr-readyOney");
+          document.getElementsByName('rowChange')[i].classList.add("tr-write");
+          document.getElementsByName('bikous')[i].classList.add("tr-write");
+        } else {
+
+          // 金色の書け
+          if (document.getElementsByName('rowChange')[i].classList.value === "tr-write") {
+
+            // 書かない
+            document.getElementsByName('bikous')[i].disabled = "disabled";
+            document.getElementsByName('rowChange')[i].classList.remove("tr-write");
+            document.getElementsByName('bikous')[i].classList.remove("tr-write");
+          }
+        }
+      }
+    }
+    // 非活性
+    function toDisable(thisId) { 
+      alert(thisId);
+      var id = thisId.split("-")
+      var checkboxs = document.getElementById(thisId);
+
+      if (checkboxs.checked) {
+
+        // alert('checkedbikou-6-'+id[2]);
+        // 書かない
+        // document.getElementById('bikou-6-'+id[2]).readOnly = "readOnly";
+        // document.getElementById('bikou-6-'+id[2]).disabled = "disabled";
+        document.getElementById('tr-0').disabled = "disabled";
+      } else { 
+        // alert('Notikou-6-'+id[1]);
+        // 書ける
+        // document.getElementById('bikou-6-'+id[2]).readOnly = "";
+        // document.getElementById('bikou-6-'+id[2]).disabled = "";
+        document.getElementById('tr-0').disabled = "";
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <table>
+    <caption><span>Honest-info</span></caption>
+    <col width="5%">
+    <col width="5%">
+    <col width="8%">
+    <col width="6%">
+    <col width="6%">
+    <col width="6%">
+    <col width="11%">
+    <col width="11%">
+    <col width="32%" text-align="left" valign="middle">
+
+    <!-- table head -->
+    <thead>
+      <!-- table row -->
+      <tr>
+        <th colspan="9">勤務表</th>
+      </tr>
+    </thead>
+    <!-- table body -->
+    <tbody class="listst">
+      <!-- table row -->
+      <tr>
+        <!-- table head -->
+        <th>確認</th>
+        <th>番号</th>
+        <th> 年 </th>
+        <th> 月 </th>
+        <th> 日 </th>
+        <th>曜日</th>
+        <th>出勤</th>
+        <th>退勤</th>
+        <th>備考</th>
+      </tr>  
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="9">
+          <button name="buttonUpdata" onclick="">確認-更新</button>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="2" colspan="9">
+          <div>
+            説明
+            <ol>
+              <li>灰色は前保存したデータ。</li>
+              <li>チェックしたのは、金色になった、更新をできる。</li>
+              <li>まだ入力しないのは、白色を表示している。</li>
+            </ol>
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+<script> 
+var num=0;
+var select=`
+
+<select>
+            <option value="0">0:00</option>
+            <option value="1">1:00</option>
+            <option value="2">2:00</option>
+            <option value="3">3:00</option>
+            <option value="4">4:00</option>
+            <option value="5">5:00</option>
+            <option value="6">6:00</option>
+            <option value="7">7:00</option>
+            <option value="8">8:00</option>
+            <option value="9">9:00</option>
+            <option value="10">10:00</option>
+            <option value="11">11:00</option>
+            <option value="12">12:00</option>
+            <option value="13">13:00</option>
+            <option value="14">14:00</option>
+            <option value="15">15:00</option>
+            <option value="16">16:00</option>
+            <option value="17">17:00</option>
+            <option value="18">18:00</option>
+            <option value="19">19:00</option>
+            <option value="20">20:00</option>
+            <option value="21">21:00</option>
+            <option value="22">22:00</option>
+            <option value="23">23:00</option>
+            <option value="24">24:00</option>
+          </select>`;
+    //循环列表
+    var getList = [
+    {
+        id: 'tr-1',
+        id2: 'checkboxs-1',
+        td: '1',
+        td2: '07',
+        td3: '01',
+        td4: '金',
+        select:select,
+        bikou: 'bikou-2',
+        tit: '保存したデータ'
+      },
+      {
+        id: 'tr-2',
+        id2: 'checkboxs-2',
+        td: '2',
+        td2: '07',
+        td3: '02',
+        td4: '土',
+        select:select,
+        bikou: 'bikou-2',
+        tit: '入力できる、チェックしないと更新しない'
+      },
+      {
+        id: 'tr-3',
+        id2: 'checkboxs-3',
+        td: '3',
+        td2: '07',
+        td3: '03',
+        td4: '日',
+        select:select,
+        bikou: 'bikou-1',
+        tit: '更新しておく、チェックしないと更新しない'
+      },
+      {
+        id: 'tr-4',
+        id2: 'checkboxs-4',
+        td: '4',
+        td2: '07',
+        td3: '04',
+        td4: '月',
+        select:select,
+        bikou: 'bikou-5',
+        tit: 'Defult 何も入力してない状態'
+      },
+      {
+        id: 'tr-5',
+        id2: 'checkboxs-5',
+        td: '5',
+        td2: '07',
+        td3: '05',
+        td4: '火',
+        select:select,
+        bikou: 'bikou-5',
+        tit: '試し'
+      },
+      {
+        id: 'tr-6',
+        id2: 'checkboxs-6',
+        td: '6',
+        td2: '07',
+        td3: '06',
+        td4: '水',
+        select:select,
+        bikou: 'bikou-6',
+        tit: '試し'
+      }, 
+      {
+        id: 'tr-7',
+        id2: 'checkboxs-7',
+        td: '7',
+        td2: '07',
+        td3: '07',
+        td4: '木',
+        select:select,
+        bikou: 'bikou-7',
+        tit: '前保存したデータ'
+      },
+      {
+        id: 'tr-8',
+        id2: 'checkboxs-8',
+        td: '8',
+        td2: '07',
+        td3: '08',
+        td4: '金',
+        select:select,
+        bikou: 'bikou-8',
+        tit: '前保存したデータ'
+      },
+      {
+        id: 'tr-9',
+        id2: 'checkboxs-9',
+        td: '9',
+        td2: '07',
+        td3: '09',
+        td4: '土',
+        select:select,
+        bikou: 'bikou-9',
+        tit: '前保存したデータ'
+      },
+      {
+        id: 'tr-10',
+        id2: 'checkboxs-10',
+        td: '10',
+        td2: '07',
+        td3: '10',
+        td4: '日',
+        select:select,
+        bikou: 'bikou-10',
+        tit: '前保存したデータ'
+      },
+      {
+        id: 'tr-11',
+        id2: 'checkboxs-11',
+        td: '11',
+        td2: '07',
+        td3: '11',
+        td4: '月',
+        select:select,
+        bikou: 'bikou-11',
+        tit: '前保存したデータ'
+      }, 
+      {
+        id: 'tr-12',
+        id2: 'checkboxs-12',
+        td: '12',
+        td2: '07',
+        td3: '12',
+        td4: '火',
+        select:select,
+        bikou: 'bikou-12',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-13',
+        id2: 'checkboxs-13',
+        td: '13',
+        td2: '07',
+        td3: '13',
+        td4: '水',
+        select:select,
+        bikou: 'bikou-11',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-14',
+        id2: 'checkboxs-14',
+        td: '14',
+        td2: '07',
+        td3: '14',
+        td4: '木',
+        select:select,
+        bikou: 'bikou-14',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-15',
+        id2: 'checkboxs-15',
+        td: '15',
+        td2: '07',
+        td3: '15',
+        td4: '金',
+        select:select,
+        bikou: 'bikou-15',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-16',
+        id2: 'checkboxs-16',
+        td: '16',
+        td2: '07',
+        td3: '16',
+        td4: '土',
+        select:select,
+        bikou: 'bikou-16',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-17',
+        id2: 'checkboxs-17',
+        td: '16',
+        td2: '07',
+        td3: '17',
+        td4: '日',
+        select:select,
+        bikou: 'bikou-17',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-18',
+        id2: 'checkboxs-18',
+        td: '18',
+        td2: '07',
+        td3: '18',
+        td4: '月',
+        select:select,
+        bikou: 'bikou-11',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-19',
+        id2: 'checkboxs-19',
+        td: '19',
+        td2: '07',
+        td3: '19',
+        td4: '火',
+        select:select,
+        bikou: 'bikou-19',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-20',
+        id2: 'checkboxs-20',
+        td: '20',
+        td2: '07',
+        td3: '20',
+        td4: '水',
+        select:select,
+        bikou: 'bikou-20',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-21',
+        id2: 'checkboxs-21',
+        td: '21',
+        td2: '07',
+        td3: '21',
+        td4: '木',
+        select:select,
+        bikou: 'bikou-11',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-22',
+        id2: 'checkboxs-22',
+        td: '22',
+        td2: '07',
+        td3: '22',
+        td4: '金',
+        select:select,
+        bikou: 'bikou-11',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-23',
+        id2: 'checkboxs-23',
+        td: '23',
+        td2: '07',
+        td3: '23',
+        td4: '土',
+        select:select,
+        bikou: 'bikou-23',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-24',
+        id2: 'checkboxs-24',
+        td: '24',
+        td2: '07',
+        td3: '24',
+        td4: '日',
+        select:select,
+        bikou: 'bikou-11',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-25',
+        id2: 'checkboxs-25',
+        td: '25',
+        td2: '07',
+        td3: '25',
+        td4: '月',
+        select:select,
+        bikou: 'bikou-11',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-26',
+        id2: 'checkboxs-26',
+        td: '26',
+        td2: '07',
+        td3: '26',
+        td4: '火',
+        select:select,
+        bikou: 'bikou-26',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-27',
+        id2: 'checkboxs-27',
+        td: '27',
+        td2: '07',
+        td3: '27',
+        td4: '水',
+        select:select,
+        bikou: 'bikou-27',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-28',
+        id2: 'checkboxs-28',
+        td: '28',
+        td2: '07',
+        td3: '28',
+        td4: '木',
+        select:select,
+        bikou: 'bikou-28',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-29',
+        id2: 'checkboxs-29',
+        td: '29',
+        td2: '07',
+        td3: '29',
+        td4: '金',
+        select:select,
+        bikou: 'bikou-29',
+        tit: '前保存したデータ'
+      },    {
+        id: 'tr-30',
+        id2: 'checkboxs-30',
+        td: '30',
+        td2: '07',
+        td3: '30',
+        td4: '月',
+        select:select,
+        bikou: 'bikou-30',
+        tit: '前保存したデータ'
+      },
+      {
+        id: 'tr-31',
+        id2: 'checkboxs-31',
+        td: '31',
+        td2: '07',
+        td3: '31',
+        td4: '日',
+        select:select,
+        bikou: 'bikou-31',
+        tit: '前保存したデータ'
+      }
+    ]  
+    for (var i = 0; i < getList.length; i++) {
+    //渲染数据
+    var lists = `
+    <tr id="${getList[num].id}" name="rowChange" class="tr-write">
+        <td>
+          <input id="${getList[num].id2}" name="checkboxs" type="checkbox" onclick="toUpdata(this.id)" >
+        </td>
+        <td>${getList[num].td}</td>
+        <td></td>
+        <td>${getList[num].td2}</td>
+        <td>${getList[num].td3}</td>
+        <td>${getList[num].td4}</td>
+        <td>
+          ${getList[num].select}
+          </td>
+        <td>
+          ${getList[num].select}
+          </td>
+        <td class="">
+          <input id="${getList[num].bikou}" name="bikous" type="text" class="read-only tr-write" value="${getList[num].tit}">
+        </td>
+      </tr>
+    `;
+      var listst = document.querySelector('.listst') 
+      listst.innerHTML += lists 
+      console.log(666,getList.length );
+      this.num++
+    } 
+</script>
+
+</html>
